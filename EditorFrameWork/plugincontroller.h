@@ -4,6 +4,8 @@
 
 #include <QFile>
 #include <QUrl>
+#include <QString>
+
 
 
 #include "../EditorFrameworkInterfaces/icore.h"

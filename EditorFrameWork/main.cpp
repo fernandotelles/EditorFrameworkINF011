@@ -6,10 +6,8 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
 
-    ICore *c = new Core();
+    (new Core())->uiController()->addMenuItem("File", "fdp");
 
     return a.exec();
 }

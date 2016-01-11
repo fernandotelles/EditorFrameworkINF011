@@ -1,6 +1,8 @@
 #ifndef IUICONTROLLER_H
 #define IUICONTROLLER_H
 
+class QMenu;
+class QString;
 
 class IUIController
 {
