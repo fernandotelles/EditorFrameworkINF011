@@ -15,6 +15,6 @@ public:
     virtual bool initialize(ICore *core) = 0;
 };
 
-Q_DECLARE_INTERFACE(IPlugin, "org.qt.EditoFrameworkInterfaces.IPlugin")
+Q_DECLARE_INTERFACE(IPlugin, "org.qt.EditorFrameworkInterfaces.IPlugin")
 
 #endif // IPLUGIN_H
