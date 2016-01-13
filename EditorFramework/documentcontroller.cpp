@@ -2,9 +2,8 @@
 
 DocumentController::DocumentController()
 {
-
 }
 
-DocumentController::~DocumentController(){
-
+DocumentController::~DocumentController()
+{
 }

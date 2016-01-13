@@ -5,3 +5,7 @@ IDocumentController::IDocumentController()
 
 }
 
+IDocumentController::~IDocumentController()
+{
+
+}

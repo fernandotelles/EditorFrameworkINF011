@@ -20,17 +20,9 @@
      <x>0</x>
      <y>0</y>
      <width>400</width>
-     <height>27</height>
+     <height>30</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuEditor_Framework">
-    <property name="title">
-     <string>File</string>
-    </property>
-    <addaction name="actionOpen"/>
-    <addaction name="actionSave"/>
-   </widget>
-   <addaction name="menuEditor_Framework"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -41,16 +33,6 @@
    </attribute>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
-  <action name="actionOpen">
-   <property name="text">
-    <string>&amp;Open</string>
-   </property>
-  </action>
-  <action name="actionSave">
-   <property name="text">
-    <string>&amp;Save</string>
-   </property>
-  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>

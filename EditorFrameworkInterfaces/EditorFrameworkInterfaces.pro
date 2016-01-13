@@ -11,10 +11,10 @@ TEMPLATE = lib
 
 DEFINES += EDITORFRAMEWORKINTERFACES_LIBRARY
 
-SOURCES += editorframeworkinterfaces.cpp
+SOURCES += iuicontroller.cpp
 
-HEADERS += editorframeworkinterfaces.h\
-        editorframeworkinterfaces_global.h \
+HEADERS +=\
+    editorframeworkinterfaces_global.h \
     icore.h \
     idocumentcontroller.h \
     iplugincontroller.h \
@@ -24,4 +24,7 @@ HEADERS += editorframeworkinterfaces.h\
 unix {
     target.path = /usr/lib
     INSTALLS += target
+    headers.files = $$HEADERS
+    headers.path = /usr/include/EditorFrameworkInterfaces
+    INSTALLS += headers
 }

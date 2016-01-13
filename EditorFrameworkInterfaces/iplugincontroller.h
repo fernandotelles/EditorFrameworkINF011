@@ -1,16 +1,13 @@
 #ifndef IPLUGINCONTROLLER_H
 #define IPLUGINCONTROLLER_H
 
-#include <QList>
-#include <QString>
+#include "editorframeworkinterfaces_global.h"
 
-class IPluginController
+class EDITORFRAMEWORKINTERFACESSHARED_EXPORT IPluginController
 {
 public:
-//    IPluginController();
-//    virtual ~IPluginController();
-    
-
+    IPluginController() {}
+    ~IPluginController() {}
 };
 
 #endif // IPLUGINCONTROLLER_H
