@@ -3,10 +3,12 @@
 
 #include <EditorFrameworkInterfaces/iplugincontroller.h>
 
+class ICore;
+
 class PluginController : public IPluginController
 {
 public:
-    PluginController();
+    PluginController(ICore *core);
     virtual ~PluginController();
 };
 

@@ -1,8 +1,30 @@
 #include "plugincontroller.h"
 
-PluginController::PluginController()
+#include <EditorFrameworkInterfaces/icore.h>
+#include <EditorFrameworkInterfaces/iplugin.h>
+
+#include <QPluginLoader>
+#include <QUrl>
+#include <QDir>
+#include <QStringList>
+
+PluginController::PluginController(ICore *core)
 {
 
+    // Encontra a pasta plugins
+    QDir currentDir("./plugins");
+    // Obtem todos os arquivos dentro desta pasta
+    QStringList plugins = currentDir.entryList();
+
+    IPlugin *iplugin = 0;
+
+    foreach (QString plugin, currentDir.entryList(QDir::Files))
+    {
+        QPluginLoader loader(currentDir.absoluteFilePath(plugin));
+        iplugin = (IPlugin*) loader.instance();
+        if (iplugin)
+            iplugin->initialize(core);
+    }
 }
 
 PluginController::~PluginController()

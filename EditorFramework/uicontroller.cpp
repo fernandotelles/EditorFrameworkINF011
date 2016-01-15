@@ -9,7 +9,7 @@ UIController::UIController() :
 {
     m_mainWindow->show();
     QMenu *menu;
-    addMenu("SubSubFile", menu = addMenu("SubFile", addMenu("File")));
+    addMenu("SubSubFile", menu = addMenu("SubFile", addMenu("&File")));
     addAction(menu, "&Hello World!", this, SLOT(mySlot()));
 }
 
@@ -23,7 +23,7 @@ QMenu *UIController::addMenu(const QString &title, QMenu *parent, const QIcon &i
     QMenu *parentMenu = 0;
     if (parent)
         foreach (QMenu *childMenu, m_mainWindow->ui->menuBar->findChildren<QMenu *>())
-            if (childMenu == parent)
+            if (childMenu->title() == parent->title())
                 parentMenu = childMenu;
     if (parentMenu)
         return parentMenu->addMenu(icon, title);

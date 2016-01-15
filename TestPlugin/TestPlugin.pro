@@ -17,7 +17,7 @@ SOURCES += testplugin.cpp
 HEADERS += testplugin.h\
         testplugin_global.h
 
-DESTDIR = ../../EditorFramework/plugins
+DESTDIR = ../EditorFramework/plugins
 
 unix {
     target.path = /usr/lib

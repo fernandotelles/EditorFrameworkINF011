@@ -4,7 +4,7 @@
 #include <EditorFrameworkInterfaces/iuicontroller.h>
 
 #include <QDebug>
-
+#include <QtGui/QMenu>
 TestPlugin::TestPlugin(QObject *parent) :
     IPlugin(parent)
 {
@@ -12,10 +12,9 @@ TestPlugin::TestPlugin(QObject *parent) :
 
 bool TestPlugin::initialize(ICore *core)
 {
-    QMenu* menu = core->uiController()->addMenu("TestPlugin");
-
-    if(menu)
-        return core->uiController()->addAction(menu,"&TestAction",this,SLOT(triggered()));
+    QMenu *parent = new QMenu("&File");
+    QMenu *menu = core->uiController()->addMenu("&TestMenu",parent);
+    return core->uiController()->addAction(menu,"&TestAction",this,SLOT(triggered()));
 }
 
 void TestPlugin::triggered()

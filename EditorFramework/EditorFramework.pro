@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT    += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -12,18 +12,18 @@ TARGET = EditorFramework
 TEMPLATE = app
 
 SOURCES += main.cpp\
-        mainwindow.cpp \
+    mainwindow.cpp \
     uicontroller.cpp \
     core.cpp \
     documentcontroller.cpp \
     plugincontroller.cpp
 
-HEADERS  += mainwindow.h \
+HEADERS += mainwindow.h \
     uicontroller.h \
     core.h \
     documentcontroller.h \
     plugincontroller.h
 
-FORMS    += mainwindow.ui
+FORMS += mainwindow.ui
 
 unix|win32: LIBS += -lEditorFrameworkInterfaces

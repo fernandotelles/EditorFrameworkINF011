@@ -7,7 +7,7 @@
 Core::Core() :
     m_uiController(new UIController),
     m_documentController(new DocumentController),
-    m_pluginController(new PluginController)
+    m_pluginController(new PluginController(this))
 {
 }
 
