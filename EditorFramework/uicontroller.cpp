@@ -8,9 +8,10 @@ UIController::UIController() :
     m_mainWindow(new MainWindow)
 {
     m_mainWindow->show();
-    QMenu *menu;
-    addMenu("SubSubFile", menu = addMenu("SubFile", addMenu("&File")));
-    addAction(menu, "&Hello World!", this, SLOT(mySlot()));
+    addMenu("&File");
+    addMenu("SubFile", "&File");
+    addMenu("SubSubFile", "SubFile");
+    addAction("SubSubFile", "&Hello World!", this, SLOT(mySlot()));
 }
 
 UIController::~UIController()
@@ -18,26 +19,26 @@ UIController::~UIController()
     delete m_mainWindow;
 }
 
-QMenu *UIController::addMenu(const QString &title, QMenu *parent, const QIcon &icon)
+QMenu *UIController::addMenu(const QString &title, const QString &parentMenuName, const QIcon &icon)
 {
-    QMenu *parentMenu = 0;
-    if (parent)
-        foreach (QMenu *childMenu, m_mainWindow->ui->menuBar->findChildren<QMenu *>())
-            if (childMenu->title() == parent->title())
-                parentMenu = childMenu;
+    QList<QMenu *> children = m_mainWindow->ui->menuBar->findChildren<QMenu *>(parentMenuName);
+    QMenu *parentMenu = children.isEmpty() ? 0:children.first();
+    QMenu *newMenu;
     if (parentMenu)
-        return parentMenu->addMenu(icon, title);
+        newMenu = parentMenu->addMenu(icon, title);
     else
-        return m_mainWindow->ui->menuBar->addMenu(icon, title);
+        newMenu = m_mainWindow->ui->menuBar->addMenu(icon, title);
+    newMenu->setObjectName(title);
+    return newMenu;
 }
 
-bool UIController::addAction(QMenu *menu, const QString &text, const QObject *receiver, const char *member, const QKeySequence &shortcut, const QIcon &icon)
+bool UIController::addAction(const QString &menuName, const QString &text, const QObject *receiver, const char *member, const QKeySequence &shortcut, const QIcon &icon)
 {
-    if (menu) {
-        menu->addAction(icon, text, receiver, member, shortcut);
-        return true;
-    }
-    return false;
+    QList<QMenu *> children = m_mainWindow->ui->menuBar->findChildren<QMenu *>(menuName);
+    if (children.isEmpty())
+        return false;
+    children.first()->addAction(icon, text, receiver, member, shortcut);
+    return true;
 }
 
 void UIController::mySlot()

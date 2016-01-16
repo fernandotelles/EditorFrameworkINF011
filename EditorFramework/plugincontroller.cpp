@@ -10,11 +10,7 @@
 
 PluginController::PluginController(ICore *core)
 {
-
-    // Encontra a pasta plugins
     QDir currentDir("./plugins");
-    // Obtem todos os arquivos dentro desta pasta
-    QStringList plugins = currentDir.entryList();
 
     IPlugin *iplugin = 0;
 
@@ -29,5 +25,4 @@ PluginController::PluginController(ICore *core)
 
 PluginController::~PluginController()
 {
-
 }

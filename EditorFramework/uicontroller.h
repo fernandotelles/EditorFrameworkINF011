@@ -12,8 +12,8 @@ public:
     UIController();
     virtual ~UIController();
 
-    virtual QMenu *addMenu(const QString &title, QMenu *parent = 0, const QIcon &icon = QIcon());
-    virtual bool addAction(QMenu *menu, const QString &text, const QObject *receiver, const char *member, const QKeySequence &shortcut = QKeySequence(), const QIcon &icon = QIcon());
+    virtual QMenu *addMenu(const QString &title, const QString &parentMenuName = QString(), const QIcon &icon = QIcon());
+    virtual bool addAction(const QString &menuName, const QString &text, const QObject *receiver, const char *member, const QKeySequence &shortcut = QKeySequence(), const QIcon &icon = QIcon());
 
 private Q_SLOTS:
     void mySlot();

@@ -12,9 +12,9 @@ TestPlugin::TestPlugin(QObject *parent) :
 
 bool TestPlugin::initialize(ICore *core)
 {
-    QMenu *parent = new QMenu("&File");
-    QMenu *menu = core->uiController()->addMenu("&TestMenu",parent);
-    return core->uiController()->addAction(menu,"&TestAction",this,SLOT(triggered()));
+    core->uiController()->addMenu("&File");
+    core->uiController()->addMenu("&TestMenu", "&File");
+    return core->uiController()->addAction("&TestMenu","&TestAction",this,SLOT(triggered()), QKeySequence(Qt::CTRL + Qt::Key_G));
 }
 
 void TestPlugin::triggered()

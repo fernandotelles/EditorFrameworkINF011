@@ -18,8 +18,8 @@ public:
     IUIController();
     virtual ~IUIController();
 
-    virtual QMenu *addMenu(const QString &title, QMenu *parent = 0, const QIcon &icon = QIcon()) = 0;
-    virtual bool addAction(QMenu *menu, const QString &text, const QObject *receiver, const char *member, const QKeySequence &shortcut = QKeySequence(), const QIcon &icon = QIcon()) = 0;
+    virtual QMenu *addMenu(const QString &title, const QString &parentMenuName = QString(), const QIcon &icon = QIcon()) = 0;
+    virtual bool addAction(const QString &menuName, const QString &text, const QObject *receiver, const char *member, const QKeySequence &shortcut = QKeySequence(), const QIcon &icon = QIcon()) = 0;
 };
 
 #endif // IUICONTROLLER_H
