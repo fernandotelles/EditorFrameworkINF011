@@ -3,8 +3,7 @@
 
 #include "editorframeworkinterfaces_global.h"
 
-class QList;
-class QString;
+class QStringList;
 
 class EDITORFRAMEWORKINTERFACESSHARED_EXPORT IAbstractFactory
 {
@@ -12,7 +11,7 @@ class EDITORFRAMEWORKINTERFACESSHARED_EXPORT IAbstractFactory
 public:
     IAbstractFactory(){}
     virtual ~IAbstractFactory(){}
-    virtual QList<QString> supportedExtensions() = 0;
+    virtual QStringList *supportedExtensions() const = 0;
 };
 
 #endif // IABSTRACTFACTORY_H

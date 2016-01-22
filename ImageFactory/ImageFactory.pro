@@ -8,6 +8,7 @@ QT       -= gui
 
 TARGET = ImageFactory
 TEMPLATE = lib
+CONFIG += plugin
 
 DEFINES += IMAGEFACTORY_LIBRARY
 
@@ -24,7 +25,18 @@ HEADERS += imagefactory.h\
     imageserializer.h \
     imagetoolbox.h
 
+DESTDIR = ../EditorFramework/plugins
+
 unix {
     target.path = /usr/lib
     INSTALLS += target
+    headers.files = $$HEADERS
+    headers.path = /usr/include/TestPlugin
+    INSTALLS += headers
 }
+
+DISTFILES += \
+    imagefactoryplugin.json \
+    imagefactoryplugin.json
+
+unix|win32: LIBS += -lEditorFrameworkInterfaces

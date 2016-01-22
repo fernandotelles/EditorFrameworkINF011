@@ -8,6 +8,7 @@ QT       -= gui
 
 TARGET = TextFactory
 TEMPLATE = lib
+CONFIG += plugin
 
 DEFINES += TEXTFACTORY_LIBRARY
 
@@ -24,7 +25,16 @@ HEADERS += textfactory.h\
     textserializer.h \
     texttoolbox.h
 
+DESTDIR = ../EditorFramework/plugins
+
 unix {
     target.path = /usr/lib
     INSTALLS += target
+    headers.files = $$HEADERS
+    headers.path = /usr/include/TestPlugin
+    INSTALLS += headers
 }
+
+DISTFILES += \
+    textfactoryplugin.json \
+    textfactoryplugin.json

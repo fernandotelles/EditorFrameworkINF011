@@ -6,7 +6,7 @@
 #include <QPluginLoader>
 #include <QUrl>
 #include <QDir>
-#include <QStringList>
+#include <QList>
 
 PluginController::PluginController(ICore *core)
 {
@@ -25,4 +25,21 @@ PluginController::PluginController(ICore *core)
 
 PluginController::~PluginController()
 {
+}
+
+QList<IPlugin *> *PluginController::loadedPlugins() const{
+    QList<IPlugin *> *plugins = new QList<IPlugin *>;
+
+    QDir currentDir("./plugins");
+
+    IPlugin *iplugin = 0;
+    foreach(QString plugin, currentDir.entryList(QDir::Files))
+    {
+        QPluginLoader loader(currentDir.absoluteFilePath(plugin));
+        iplugin = (IPlugin*) loader.instance();
+        if(iplugin)
+            plugins->append(iplugin);
+    }
+
+    return plugins;
 }

@@ -3,11 +3,14 @@
 
 #include "editorframeworkinterfaces_global.h"
 
+class IPlugin;
+
 class EDITORFRAMEWORKINTERFACESSHARED_EXPORT IPluginController
 {
 public:
     IPluginController() {}
-    ~IPluginController() {}
+    virtual ~IPluginController() {}
+    virtual QList<IPlugin *> *loadedPlugins() const = 0;
 };
 
 #endif // IPLUGINCONTROLLER_H
