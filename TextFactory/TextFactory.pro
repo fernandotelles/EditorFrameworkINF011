@@ -31,10 +31,9 @@ unix {
     target.path = /usr/lib
     INSTALLS += target
     headers.files = $$HEADERS
-    headers.path = /usr/include/TestPlugin
+    headers.path = /usr/include/TextFactoryPlugin
     INSTALLS += headers
 }
 
 DISTFILES += \
-    textfactoryplugin.json \
     textfactoryplugin.json

@@ -36,7 +36,6 @@ unix {
 }
 
 DISTFILES += \
-    imagefactoryplugin.json \
     imagefactoryplugin.json
 
 unix|win32: LIBS += -lEditorFrameworkInterfaces
