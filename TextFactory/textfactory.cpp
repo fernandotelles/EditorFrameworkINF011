@@ -2,15 +2,21 @@
 
 #include <QStringList>
 
-TextFactory::TextFactory():
+TextFactory::TextFactory(QObject *parent):
+    IPlugin(parent),
     m_extensions(new QStringList)
 {
-    this->addExtension("txt");
 }
 
 TextFactory::~TextFactory()
 {
     delete m_extensions;
+}
+
+bool TextFactory::initialize(ICore *core)
+{
+    addExtension("*.txt");
+    return true;
 }
 
 QStringList *TextFactory::supportedExtensions() const
@@ -20,7 +26,10 @@ QStringList *TextFactory::supportedExtensions() const
 
 bool TextFactory::addExtension(const char *extension)
 {
-//    QStringList::ConstIterator iterator = m_extensions->cbegin();
-//    for(;iterator < m_extensions->cend();++iterator)
-    m_extensions->operator <<(extension);
+    if(!m_extensions->contains(extension))
+    {
+        m_extensions->operator <<(extension);
+        return true;
+    }
+    return false;
 }

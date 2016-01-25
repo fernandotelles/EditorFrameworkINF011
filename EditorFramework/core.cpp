@@ -5,7 +5,7 @@
 #include "plugincontroller.h"
 
 Core::Core() :
-    m_uiController(new UIController),
+    m_uiController(new UIController(this)),
     m_documentController(new DocumentController),
     m_pluginController(new PluginController(this))
 {

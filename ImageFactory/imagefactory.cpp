@@ -1,19 +1,24 @@
 #include "imagefactory.h"
 
-#include <QList>
 #include <QStringList>
 
-ImageFactory::ImageFactory():
+ImageFactory::ImageFactory(QObject *parent):
+    IPlugin(parent),
     m_extensions(new QStringList)
 {
-    this->addExtension("jpg");
-    this->addExtension("png");
-    this->addExtension("gif");
 }
 
 ImageFactory::~ImageFactory()
 {
     delete m_extensions;
+}
+
+bool ImageFactory::initialize(ICore *core)
+{
+    addExtension("*.jpg");
+    addExtension("*.png");
+    addExtension("*.gif");
+    return true;
 }
 
 QStringList *ImageFactory::supportedExtensions() const
@@ -23,5 +28,10 @@ QStringList *ImageFactory::supportedExtensions() const
 
 bool ImageFactory::addExtension(const char *extension)
 {
-    m_extensions->operator <<(extension);
+    if(!m_extensions->contains(extension))
+    {
+        m_extensions->operator <<(extension);
+        return true;
+    }
+    return false;
 }
