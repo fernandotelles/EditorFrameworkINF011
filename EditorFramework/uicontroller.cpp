@@ -8,7 +8,7 @@
 #include "ui_mainwindow.h"
 
 #include <QDebug>
-#include <QStringList>
+#include <QString>
 #include <QFileDialog>
 
 UIController::UIController(ICore *core) :
@@ -54,14 +54,7 @@ void UIController::initialize()
 }
 
 QString *UIController::extensions(ICore *core) const{
-    /**
-    *
-    *6.1) Invocar o pluginController para obter todos os plugins
-    *6.2) Se o plugin for de fábrica (implementar IAbstractFactory) obter as supportedExtensions()
-    *6.3) Fazer o merge de todas as supportedExtensions();
-    *6.4) Abrir a tela de File->Open com um filtro mostrando apenas as extensões suportadas pelos plugins.
-    *6.5) A depender do arquivo selecionado para abrir, utilizar a fábrica que tem a extensão do arquivo na lista retornada por supportedExtensions().
-    */
+
     QString *extensions = new QString("Supported Files(");
     IPluginController *ipluginController = core->pluginController();
 
@@ -86,6 +79,7 @@ void UIController::actionClick()
     QFileDialog *fileDialog = new QFileDialog(m_mainWindow);
 
     fileDialog->setNameFilter(*extensions(m_core));
+
     if (fileDialog->exec())
     {
         selectedFile = fileDialog->selectedFiles().at(0);
@@ -98,11 +92,9 @@ void UIController::actionClick()
             {
                 if (abstractFactory->supportedExtensions()->contains(fileExtension))
                 {
-                    addMenu("Extensão de Arquivo: "+ fileExtension +". Plugin: "+ iplugin->metaObject()->className()+"");
+                    qDebug()<<"Extensão de Arquivo: "+ fileExtension +". Plugin: "+ iplugin->metaObject()->className()+"";
                 }
             }
         }
-
     }
-
 }
