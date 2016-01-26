@@ -19,7 +19,12 @@ HEADERS +=\
     idocumentcontroller.h \
     iplugincontroller.h \
     iplugin.h \
-    iuicontroller.h
+    iuicontroller.h \
+    iabstractfactory.h \
+    ieditor.h \
+    iserializer.h \
+    iverifier.h \
+    itoolbox.h
 
 unix {
     target.path = /usr/lib
