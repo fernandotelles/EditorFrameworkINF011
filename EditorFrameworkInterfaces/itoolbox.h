@@ -8,7 +8,7 @@ class EDITORFRAMEWORKINTERFACESSHARED_EXPORT IToolbox
 
 public:
     IToolbox(){}
-    virtual IToolbox(){}
+    virtual ~IToolbox(){}
 };
 
 #endif // ITOOLBOX_H

@@ -2,6 +2,11 @@
 
 #include <QStringList>
 
+#include "imageeditor.h"
+#include "imageserializer.h"
+#include "imageverifier.h"
+#include "imagetoolbox.h"
+
 ImageFactory::ImageFactory(QObject *parent):
     IPlugin(parent),
     m_extensions(new QStringList)
@@ -34,4 +39,24 @@ bool ImageFactory::addExtension(const char *extension)
         return true;
     }
     return false;
+}
+
+Editor *ImageFactory::createEditor() const
+{
+    return new ImageEditor;
+}
+
+ISerializer *ImageFactory::createSerializer() const
+{
+    return new ImageSerializer;
+}
+
+IVerifier *ImageFactory::createVerifier() const
+{
+    return new ImageVerifier;
+}
+
+IToolbox *ImageFactory::createToolbox() const
+{
+    return new ImageToolbox;
 }

@@ -9,6 +9,11 @@
 
 #include <QStringList>
 
+class Editor;
+class ISerializer;
+class IVerifier;
+class IToolbox;
+
 class TEXTFACTORYSHARED_EXPORT TextFactory : public IPlugin,
                                              public IAbstractFactory
 {
@@ -21,6 +26,10 @@ public:
     bool initialize(ICore *core);
     virtual QStringList *supportedExtensions() const;
     bool addExtension(const char *extension);
+    virtual Editor *createEditor() const;
+    virtual ISerializer *createSerializer() const;
+    virtual IVerifier *createVerifier() const;
+    virtual IToolbox *createToolbox() const;
 
 private:
     QStringList *m_extensions;

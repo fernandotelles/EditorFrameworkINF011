@@ -1,8 +1,9 @@
 #ifndef IMAGETOOLBOX_H
 #define IMAGETOOLBOX_H
 
+#include <EditorFrameworkInterfaces/itoolbox.h>
 
-class ImageToolbox
+class ImageToolbox : public IToolbox
 {
 public:
     ImageToolbox();
