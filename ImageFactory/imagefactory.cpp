@@ -1,5 +1,6 @@
 #include "imagefactory.h"
 
+#include <EditorFrameworkInterfaces/icore.h>
 #include <QStringList>
 
 #include "imageeditor.h"

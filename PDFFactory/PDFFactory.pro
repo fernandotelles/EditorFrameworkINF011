@@ -13,11 +13,19 @@ CONFIG += plugin
 DEFINES += PDFFACTORY_LIBRARY
 
 SOURCES += pdffactory.cpp \
-    pdfserializer.cpp
+    pdfserializer.cpp \
+    pdfdocument.cpp \
+    pdftoolbox.cpp \
+    pdfverifier.cpp \
+    pdfeditor.cpp
 
 HEADERS += pdffactory.h\
         pdffactory_global.h \
-    pdfserializer.h
+    pdfserializer.h \
+    pdfdocument.h \
+    pdftoolbox.h \
+    pdfverifier.h \
+    pdfeditor.h
 
 DESTDIR = ../EditorFramework/plugins
 
@@ -31,5 +39,6 @@ unix {
 
 DISTFILES += \
     pdffactoryplugin.json \
-    pdffactoryplugin.json
 
+
+unix|win32: LIBS += -lpoppler-qt5

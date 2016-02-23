@@ -1,24 +1,24 @@
-#ifndef IMAGEDOCUMENT_H
-#define IMAGEDOCUMENT_H
+#ifndef PDFDOCUMENT_H
+#define PDFDOCUMENT_H
 
 #include <EditorFrameworkInterfaces/idocument.h>
 
 #include <QString>
-
+#include <QList>
 class QPixmap;
 
-class ImageDocument : public IDocument
+class PDFDocument : public IDocument
 {
 public:
-    ImageDocument();
+    PDFDocument();
     virtual bool open(QString fileName);
     virtual bool save();
     virtual bool close();
-    QPixmap *data() const;
+    QList<QPixmap> *data() const;
 
 private:
     QString m_fileName;
-    QPixmap *m_data;
+    QList<QPixmap> *m_data;
 };
 
-#endif // IMAGEDOCUMENT_H
+#endif // PDFDOCUMENT_H

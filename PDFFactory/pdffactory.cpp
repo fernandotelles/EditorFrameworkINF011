@@ -1,11 +1,18 @@
 #include "pdffactory.h"
 
 #include <EditorFrameworkInterfaces/icore.h>
+#include "pdfeditor.h"
+#include "pdfserializer.h"
+#include "pdfverifier.h"
+#include "pdftoolbox.h"
 
 #include <QStringList>
 
-PDFFactory::PDFFactory()
+PDFFactory::PDFFactory(QObject *parent) :
+    IPlugin(parent),
+    m_extensions(new QStringList)
 {
+
 }
 
 PDFFactory::~PDFFactory()
@@ -32,4 +39,24 @@ bool PDFFactory::addExtension(const char *extension)
         return true;
     }
     return false;
+}
+
+Editor *PDFFactory::createEditor() const
+{
+    return new PDFEditor;
+}
+
+ISerializer *PDFFactory::createSerializer() const
+{
+    return new PDFSerializer;
+}
+
+IVerifier *PDFFactory::createVerifier() const
+{
+    return new PDFVerifier;
+}
+
+IToolbox *PDFFactory::createToolbox() const
+{
+    return new PDFToolbox;
 }

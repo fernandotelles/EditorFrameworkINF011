@@ -9,6 +9,11 @@
 
 #include <QStringList>
 
+class Editor;
+class ISerializer;
+class IVerifier;
+class IToolbox;
+
 class PDFFACTORYSHARED_EXPORT PDFFactory : public IPlugin,
                                            public IAbstractFactory
 {
@@ -16,11 +21,15 @@ class PDFFACTORYSHARED_EXPORT PDFFactory : public IPlugin,
     Q_PLUGIN_METADATA(IID "org.qt.EditorFramework.Plugin.PDFFactoryPlugin" FILE "pdffactoryplugin.json")
     Q_INTERFACES(IPlugin IAbstractFactory)
 public:
-    PDFFactory();
+    PDFFactory(QObject *parent = 0);
     ~PDFFactory();
     bool initialize(ICore *core);
     virtual QStringList *supportedExtensions() const;
     bool addExtension(const char *extension);
+    virtual Editor *createEditor() const;
+    virtual ISerializer *createSerializer() const;
+    virtual IVerifier *createVerifier() const;
+    virtual IToolbox *createToolbox() const;
 
 private:
     QStringList *m_extensions;
