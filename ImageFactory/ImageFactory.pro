@@ -16,14 +16,16 @@ SOURCES += imagefactory.cpp \
     imageeditor.cpp \
     imageverifier.cpp \
     imageserializer.cpp \
-    imagetoolbox.cpp
+    imagetoolbox.cpp \
+    imagedocument.cpp
 
 HEADERS += imagefactory.h\
         imagefactory_global.h \
     imageeditor.h \
     imageverifier.h \
     imageserializer.h \
-    imagetoolbox.h
+    imagetoolbox.h \
+    imagedocument.h
 
 DESTDIR = ../EditorFramework/plugins
 

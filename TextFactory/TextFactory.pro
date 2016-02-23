@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT       -= gui
+QT       += core
 
 TARGET = TextFactory
 TEMPLATE = lib
@@ -16,14 +17,16 @@ SOURCES += textfactory.cpp \
     texteditor.cpp \
     textverifier.cpp \
     textserializer.cpp \
-    texttoolbox.cpp
+    texttoolbox.cpp \
+    textdocument.cpp
 
 HEADERS += textfactory.h\
         textfactory_global.h \
     texteditor.h \
     textverifier.h \
     textserializer.h \
-    texttoolbox.h
+    texttoolbox.h \
+    textdocument.h
 
 DESTDIR = ../EditorFramework/plugins
 

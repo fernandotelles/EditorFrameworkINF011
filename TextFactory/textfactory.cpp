@@ -2,6 +2,11 @@
 
 #include <QStringList>
 
+#include "texteditor.h"
+#include "textserializer.h"
+#include "textverifier.h"
+#include "texttoolbox.h"
+
 TextFactory::TextFactory(QObject *parent):
     IPlugin(parent),
     m_extensions(new QStringList)
@@ -32,4 +37,24 @@ bool TextFactory::addExtension(const char *extension)
         return true;
     }
     return false;
+}
+
+Editor *TextFactory::createEditor() const
+{
+    return new TextEditor;
+}
+
+ISerializer *TextFactory::createSerializer() const
+{
+    return new TextSerializer;
+}
+
+IVerifier *TextFactory::createVerifier() const
+{
+    return new TextVerifier;
+}
+
+IToolbox *TextFactory::createToolbox() const
+{
+    return new TextToolbox;
 }

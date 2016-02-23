@@ -8,10 +8,12 @@
 #include <QUrl>
 #include <QDir>
 #include <QList>
+#include <QDebug>
 
 PluginController::PluginController(ICore *core) :
     m_plugins(new QList<IPlugin *>)
 {
+    qDebug()<<"Loading plugins...";
     QDir currentDir("./plugins");
 
     IPlugin *iplugin = 0;

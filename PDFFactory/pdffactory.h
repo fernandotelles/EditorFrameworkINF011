@@ -1,29 +1,28 @@
-#ifndef IMAGEFACTORY_H
-#define IMAGEFACTORY_H
+#ifndef PDFFACTORY_H
+#define PDFFACTORY_H
 
-#include "imagefactory_global.h"
+#include "pdffactory_global.h"
 
 #include <EditorFrameworkInterfaces/iabstractfactory.h>
 #include <EditorFrameworkInterfaces/iplugin.h>
+#include <EditorFrameworkInterfaces/icore.h>
 
 #include <QStringList>
-#include <QObject>
 
-class ICore;
 class Editor;
 class ISerializer;
 class IVerifier;
 class IToolbox;
 
-class IMAGEFACTORYSHARED_EXPORT ImageFactory : public IPlugin,
-                                               public IAbstractFactory
+class PDFFACTORYSHARED_EXPORT PDFFactory : public IPlugin,
+                                           public IAbstractFactory
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID "org.qt.EditorFramework.Plugin.ImageFactoryPlugin" FILE "imagefactoryplugin.json")
+    Q_PLUGIN_METADATA(IID "org.qt.EditorFramework.Plugin.PDFFactoryPlugin" FILE "pdffactoryplugin.json")
     Q_INTERFACES(IPlugin IAbstractFactory)
 public:
-    ImageFactory(QObject *parent = 0);
-    ~ImageFactory();
+    PDFFactory(QObject *parent = 0);
+    ~PDFFactory();
     bool initialize(ICore *core);
     virtual QStringList *supportedExtensions() const;
     bool addExtension(const char *extension);
@@ -34,8 +33,6 @@ public:
 
 private:
     QStringList *m_extensions;
-
-private Q_SLOTS:
 };
 
-#endif // IMAGEFACTORY_H
+#endif // PDFFACTORY_H

@@ -1,0 +1,12 @@
+#ifndef PDFFACTORY_GLOBAL_H
+#define PDFFACTORY_GLOBAL_H
+
+#include <QtCore/qglobal.h>
+
+#if defined(PDFFACTORY_LIBRARY)
+#  define PDFFACTORYSHARED_EXPORT Q_DECL_EXPORT
+#else
+#  define PDFFACTORYSHARED_EXPORT Q_DECL_IMPORT
+#endif
+
+#endif // PDFFACTORY_GLOBAL_H

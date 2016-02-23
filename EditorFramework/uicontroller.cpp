@@ -4,12 +4,18 @@
 #include <EditorFrameworkInterfaces/icore.h>
 #include <EditorFrameworkInterfaces/iabstractfactory.h>
 #include <EditorFrameworkInterfaces/iplugin.h>
+#include <EditorFrameworkInterfaces/editor.h>
+#include <EditorFrameworkInterfaces/idocumentcontroller.h>
+#include <EditorFrameworkInterfaces/idocument.h>
+#include <EditorFrameworkInterfaces/iserializer.h>
 
 #include "ui_mainwindow.h"
 
 #include <QDebug>
 #include <QString>
 #include <QFileDialog>
+#include <QWidget>
+
 
 UIController::UIController(ICore *core) :
     m_mainWindow(new MainWindow),
@@ -35,6 +41,7 @@ QMenu *UIController::addMenu(const QString &title, const QString &parentMenuName
     else
         newMenu = m_mainWindow->ui->menuBar->addMenu(icon, title);
     newMenu->setObjectName(title);
+    qDebug()<<"Added menu"<< newMenu;
     return newMenu;
 }
 
@@ -44,13 +51,22 @@ bool UIController::addAction(const QString &menuName, const QString &text, const
     if (children.isEmpty())
         return false;
     children.first()->addAction(icon, text, receiver, member, shortcut);
+    qDebug()<<"Action added";
     return true;
+}
+
+void UIController::setEditor(const Editor *editor)
+{
+    qDebug()<<"Setting editor";
+    QWidget *view = editor->view();
+    m_mainWindow->setCentralWidget(view);
 }
 
 void UIController::initialize()
 {
+    qDebug()<<"Init";
     addMenu(tr("&File"));
-    addAction(tr("&File"), tr("&Open"), this, SLOT(actionClick()),QKeySequence(Qt::CTRL + Qt::Key_O));
+    addAction(tr("&File"), tr("&Open"), this, SLOT(actionOpen()),QKeySequence(Qt::CTRL + Qt::Key_O));
 }
 
 QString *UIController::extensions(ICore *core) const{
@@ -70,8 +86,10 @@ QString *UIController::extensions(ICore *core) const{
     return extensions;
 }
 
-void UIController::actionClick()
+void UIController::actionOpen()
 {
+    qDebug()<<"Opening File";
+
     QString selectedFile;
     QString fileExtension;
     IPluginController *ipluginController = m_core->pluginController();
@@ -92,9 +110,34 @@ void UIController::actionClick()
             {
                 if (abstractFactory->supportedExtensions()->contains(fileExtension))
                 {
+                    Editor *editor =  abstractFactory->createEditor();
+                    ISerializer *serializer = abstractFactory->createSerializer();
+                    qDebug()<<"Serializer: "<<serializer;
                     qDebug()<<"Extensão de Arquivo: "+ fileExtension +". Plugin: "+ iplugin->metaObject()->className()+"";
+
+                    IDocumentController *documentController = m_core->documentController();
+                    qDebug()<<"Document controller"<<documentController;
+                    documentController->setSerializer(serializer);
+                    qDebug()<<"Document controller"<<selectedFile;
+                    IDocument *document = documentController->openDocument(selectedFile);
+                    qDebug()<<"Document"<<document;
+                    editor->setDocument(document);
+                    qDebug()<<"Document controller"<<editor;
+                    setEditor(editor);
                 }
             }
         }
     }
 }
+
+void UIController::actionSave()
+{
+
+}
+
+void UIController::actionClose()
+{
+
+}
+
+

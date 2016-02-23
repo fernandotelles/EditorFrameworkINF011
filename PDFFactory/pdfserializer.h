@@ -1,16 +1,16 @@
-#ifndef IMAGESERIALIZER_H
-#define IMAGESERIALIZER_H
+#ifndef PDFSERIALIZER_H
+#define PDFSERIALIZER_H
 
 #include <EditorFrameworkInterfaces/iserializer.h>
 
 class QString;
 class IDocument;
 
-class ImageSerializer : public ISerializer
+class PDFSerializer : public ISerializer
 {
 public:
-    ImageSerializer();
+    PDFSerializer();
     virtual IDocument *openDocument(QString fileName);
 };
 
-#endif // IMAGESERIALIZER_H
+#endif // PDFSERIALIZER_H

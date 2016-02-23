@@ -8,7 +8,7 @@ class EDITORFRAMEWORKINTERFACESSHARED_EXPORT IVerifier
 
 public:
     IVerifier(){}
-    virtual IVerifier(){}
+    virtual ~IVerifier(){}
 };
 
 #endif // IVERIFIER_H

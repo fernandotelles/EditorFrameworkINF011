@@ -17,13 +17,16 @@ public:
 
     virtual QMenu *addMenu(const QString &title, const QString &parentMenuName = QString(), const QIcon &icon = QIcon());
     virtual bool addAction(const QString &menuName, const QString &text, const QObject *receiver, const char *member, const QKeySequence &shortcut = QKeySequence(), const QIcon &icon = QIcon());
+    virtual void setEditor(const Editor *editor);
 
 private:
     void initialize();
     QString *extensions(ICore *core)const;
 
 private Q_SLOTS:
-    void actionClick();
+    void actionOpen();
+    void actionSave();
+    void actionClose();
 
 private:
     MainWindow *m_mainWindow;
