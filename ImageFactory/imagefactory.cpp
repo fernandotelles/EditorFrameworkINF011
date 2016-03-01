@@ -57,7 +57,7 @@ IVerifier *ImageFactory::createVerifier() const
     return new ImageVerifier;
 }
 
-IToolbox *ImageFactory::createToolbox() const
+Toolbox *ImageFactory::createToolbox() const
 {
     return new ImageToolbox;
 }

@@ -54,7 +54,7 @@ IVerifier *TextFactory::createVerifier() const
     return new TextVerifier;
 }
 
-IToolbox *TextFactory::createToolbox() const
+Toolbox *TextFactory::createToolbox() const
 {
     return new TextToolbox;
 }

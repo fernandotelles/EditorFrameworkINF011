@@ -1,9 +1,9 @@
 #ifndef TEXTTOOLBOX_H
 #define TEXTTOOLBOX_H
 
-#include <EditorFrameworkInterfaces/itoolbox.h>
+#include <EditorFrameworkInterfaces/toolbox.h>
 
-class TextToolbox : public IToolbox
+class TextToolbox : public Toolbox
 {
 public:
     TextToolbox();

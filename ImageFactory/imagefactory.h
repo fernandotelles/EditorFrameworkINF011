@@ -13,7 +13,7 @@ class ICore;
 class Editor;
 class ISerializer;
 class IVerifier;
-class IToolbox;
+class Toolbox;
 
 class IMAGEFACTORYSHARED_EXPORT ImageFactory : public IPlugin,
                                                public IAbstractFactory
@@ -30,7 +30,7 @@ public:
     virtual Editor *createEditor() const;
     virtual ISerializer *createSerializer() const;
     virtual IVerifier *createVerifier() const;
-    virtual IToolbox *createToolbox() const;
+    virtual Toolbox *createToolbox() const;
 
 private:
     QStringList *m_extensions;

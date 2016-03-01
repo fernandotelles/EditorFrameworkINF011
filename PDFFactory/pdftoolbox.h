@@ -1,9 +1,9 @@
 #ifndef PDFTOOLBOX_H
 #define PDFTOOLBOX_H
 
-#include <EditorFrameworkInterfaces/itoolbox.h>
+#include <EditorFrameworkInterfaces/toolbox.h>
 
-class PDFToolbox : public IToolbox
+class PDFToolbox : public Toolbox
 {
 public:
     PDFToolbox();

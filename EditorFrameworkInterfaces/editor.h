@@ -3,9 +3,9 @@
 
 #include "editorframeworkinterfaces_global.h"
 
-class QWidget;
-
 #include "idocument.h"
+
+class QWidget;
 
 class EDITORFRAMEWORKINTERFACESSHARED_EXPORT Editor
 {

@@ -56,7 +56,7 @@ IVerifier *PDFFactory::createVerifier() const
     return new PDFVerifier;
 }
 
-IToolbox *PDFFactory::createToolbox() const
+Toolbox *PDFFactory::createToolbox() const
 {
     return new PDFToolbox;
 }

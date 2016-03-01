@@ -12,7 +12,7 @@
 class Editor;
 class ISerializer;
 class IVerifier;
-class IToolbox;
+class Toolbox;
 
 class TEXTFACTORYSHARED_EXPORT TextFactory : public IPlugin,
                                              public IAbstractFactory
@@ -29,7 +29,7 @@ public:
     virtual Editor *createEditor() const;
     virtual ISerializer *createSerializer() const;
     virtual IVerifier *createVerifier() const;
-    virtual IToolbox *createToolbox() const;
+    virtual Toolbox *createToolbox() const;
 
 private:
     QStringList *m_extensions;

@@ -12,7 +12,8 @@ TEMPLATE = lib
 DEFINES += EDITORFRAMEWORKINTERFACES_LIBRARY
 
 SOURCES += iuicontroller.cpp \
-    editor.cpp
+    editor.cpp \
+    toolbox.cpp
 
 HEADERS +=\
     editorframeworkinterfaces_global.h \
@@ -24,9 +25,10 @@ HEADERS +=\
     iabstractfactory.h \
     iserializer.h \
     iverifier.h \
-    itoolbox.h \
     editor.h \
-    idocument.h
+    idocument.h \
+    toolbox.h \
+    toolboximplementation.h
 
 unix {
     target.path = /usr/lib
