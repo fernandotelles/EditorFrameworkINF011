@@ -10,6 +10,7 @@ class Editor;
 class ISerializer;
 class IVerifier;
 class Toolbox;
+class ICore;
 
 class EDITORFRAMEWORKINTERFACESSHARED_EXPORT IAbstractFactory
 {

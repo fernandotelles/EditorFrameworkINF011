@@ -28,7 +28,7 @@ HEADERS +=\
     editor.h \
     idocument.h \
     toolbox.h \
-    toolboximplementation.h
+    itoolboximplementation.h
 
 unix {
     target.path = /usr/lib

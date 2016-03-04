@@ -3,23 +3,24 @@
 
 #include "editorframeworkinterfaces_global.h"
 
-#include <EditorFrameworkInterfaces/toolboximplementation.h>
 #include <QList>
+#include <QObject>
 
-class QToolButton;
+#include <EditorFrameworkInterfaces/itoolboximplementation.h>
 
-class EDITORFRAMEWORKINTERFACESSHARED_EXPORT Toolbox :
-        public ToolboxImplementation
+class QAction;
+
+class EDITORFRAMEWORKINTERFACESSHARED_EXPORT Toolbox : public QObject
+
 {
-
 public:
-    Toolbox(ToolboxImplementation *impl);
-    virtual ~Toolbox(){}
-    void setImplementation(ToolboxImplementation *impl);
-    virtual QList<QToolButton *> toolButtonList();
+    Toolbox(QObject *parent = 0, IToolboxImplementation *impl = 0);
+    virtual ~Toolbox();
+    void setImplementation(IToolboxImplementation *impl);
+    virtual QList<QAction *> *toolButtonList() const = 0;
 
 private:
-    ToolboxImplementation *m_implementation;
+    IToolboxImplementation *m_implementation;
 };
 
 #endif // ITOOLBOX_H

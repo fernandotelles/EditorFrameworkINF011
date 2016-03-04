@@ -5,6 +5,7 @@
 #include <EditorFrameworkInterfaces/iabstractfactory.h>
 #include <EditorFrameworkInterfaces/iplugin.h>
 #include <EditorFrameworkInterfaces/editor.h>
+#include <EditorFrameworkInterfaces/toolbox.h>
 #include <EditorFrameworkInterfaces/idocumentcontroller.h>
 #include <EditorFrameworkInterfaces/idocument.h>
 #include <EditorFrameworkInterfaces/iserializer.h>
@@ -55,11 +56,22 @@ bool UIController::addAction(const QString &menuName, const QString &text, const
     return true;
 }
 
+QAction *UIController::addToolButton(const QIcon &icon, const QString &text, const QObject *receiver, const char *member){
+    QAction *action =  m_mainWindow->ui->mainToolBar->addAction(icon,text,receiver,member);
+    return action;
+}
+
 void UIController::setEditor(const Editor *editor)
 {
     qDebug()<<"Setting editor";
     QWidget *view = editor->view();
     m_mainWindow->setCentralWidget(view);
+}
+
+void UIController::setToolbox(const Toolbox *toolbox)
+{
+    qDebug()<<"Setting Toolbox";
+    m_mainWindow->ui->mainToolBar->addActions(*toolbox->toolButtonList());
 }
 
 void UIController::initialize()
@@ -112,6 +124,7 @@ void UIController::actionOpen()
                 {
                     Editor *editor =  abstractFactory->createEditor();
                     ISerializer *serializer = abstractFactory->createSerializer();
+                    Toolbox *toolbox = abstractFactory->createToolbox();
                     qDebug()<<"Serializer: "<<serializer;
                     qDebug()<<"Extensão de Arquivo: "+ fileExtension +". Plugin: "+ iplugin->metaObject()->className()+"";
 
@@ -124,6 +137,8 @@ void UIController::actionOpen()
                     editor->setDocument(document);
                     qDebug()<<"Document controller"<<editor;
                     setEditor(editor);
+                    toolbox->setImplementation(0);
+                    setToolbox(toolbox);
                 }
             }
         }
