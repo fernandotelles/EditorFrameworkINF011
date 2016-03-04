@@ -137,7 +137,9 @@ void UIController::actionOpen()
                     editor->setDocument(document);
                     qDebug()<<"Document controller"<<editor;
                     setEditor(editor);
-                    toolbox->setImplementation(0);
+                    //toolbox->setImplementation(0);
+                    qDebug()<<"Toolbox "<<toolbox;
+
                     setToolbox(toolbox);
                 }
             }

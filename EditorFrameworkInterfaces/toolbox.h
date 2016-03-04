@@ -6,21 +6,26 @@
 #include <QList>
 #include <QObject>
 
-#include <EditorFrameworkInterfaces/itoolboximplementation.h>
+#include "itoolboximplementation.h"
 
 class QAction;
+class QToolBar;
 
 class EDITORFRAMEWORKINTERFACESSHARED_EXPORT Toolbox : public QObject
 
 {
 public:
     Toolbox(QObject *parent = 0, IToolboxImplementation *impl = 0);
-    virtual ~Toolbox();
+
     void setImplementation(IToolboxImplementation *impl);
+    void makeToolBar();
+
+    virtual ~Toolbox();
     virtual QList<QAction *> *toolButtonList() const = 0;
 
 private:
     IToolboxImplementation *m_implementation;
+    QToolBar *m_toolbar;
 };
 
 #endif // ITOOLBOX_H

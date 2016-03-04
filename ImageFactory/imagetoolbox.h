@@ -11,8 +11,10 @@ class ImageToolbox : public Toolbox
     Q_OBJECT
 public:
     ImageToolbox(QObject *parent = 0, IToolboxImplementation *impl = 0);
+    ~ImageToolbox();
     virtual QList<QAction *> *toolButtonList() const;
     void addButton(QAction *action);
+
 
 private:
     void initialize();

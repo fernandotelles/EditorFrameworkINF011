@@ -3,7 +3,7 @@
 #include <QtWidgets/QWidget>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QScrollArea>
-#include <QtGui/QGridLayout>
+#include <QtWidgets/QGridLayout>
 #include <QDebug>
 
 #include "imagedocument.h"

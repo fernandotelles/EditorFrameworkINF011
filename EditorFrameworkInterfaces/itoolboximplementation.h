@@ -3,15 +3,15 @@
 
 #include "editorframeworkinterfaces_global.h"
 
-class QStyle;
+class QToolBar;
 
 class EDITORFRAMEWORKINTERFACESSHARED_EXPORT IToolboxImplementation {
 
 public:
     IToolboxImplementation(){}
     virtual ~IToolboxImplementation(){}
-    virtual QStyle *shadow() = 0;
-    //virtual QStyle *
+    virtual QToolBar *background() = 0;
+    virtual QToolBar *border() = 0;
 };
 
 Q_DECLARE_INTERFACE(IToolboxImplementation, "org.qt.EditorFrameworkInterfaces.IToolboxImplementation")
