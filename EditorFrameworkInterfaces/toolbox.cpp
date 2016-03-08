@@ -1,6 +1,6 @@
 #include "toolbox.h"
 #include "itoolboximplementation.h"
-#include <QtWidgets/QToolBar>
+#include <QString>
 
 Toolbox::Toolbox( QObject *parent, IToolboxImplementation *impl) :
     QObject(parent)
@@ -11,8 +11,6 @@ Toolbox::Toolbox( QObject *parent, IToolboxImplementation *impl) :
 Toolbox::~Toolbox()
 {
     delete m_implementation;
-
-    if(m_toolbar) delete m_toolbar;
 }
 
 void Toolbox::setImplementation(IToolboxImplementation *impl)
@@ -20,7 +18,18 @@ void Toolbox::setImplementation(IToolboxImplementation *impl)
     m_implementation = impl;
 }
 
-void Toolbox::makeToolBar()
+QString Toolbox::toolBoxBackground()
 {
-    m_toolbar = m_implementation->background();
+    if (m_implementation)
+        return m_implementation->background();
+    else
+        return "";
+}
+
+QString Toolbox::toolBoxBorder()
+{
+    if (m_implementation)
+        return m_implementation->border();
+    else
+        return "";
 }

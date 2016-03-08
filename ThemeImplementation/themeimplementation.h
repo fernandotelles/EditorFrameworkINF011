@@ -7,7 +7,7 @@
 #include <EditorFrameworkInterfaces/itoolboximplementation.h>
 #include <EditorFrameworkInterfaces/iplugin.h>
 
-class QToolBar;
+class QString;
 
 class THEMEIMPLEMENTATIONSHARED_EXPORT ThemeImplementation : public IPlugin,
                                                              public IToolboxImplementation
@@ -18,8 +18,9 @@ class THEMEIMPLEMENTATIONSHARED_EXPORT ThemeImplementation : public IPlugin,
 public:
     ThemeImplementation(QObject *parent = 0);
     virtual bool initialize(ICore *core);
-    virtual QToolBar *background();
-    virtual QToolBar *border();
+    virtual QString background();
+    virtual QString border();
 };
 
+Q_DECLARE_METATYPE(ThemeImplementation *)
 #endif // THEMEIMPLEMENTATION_H

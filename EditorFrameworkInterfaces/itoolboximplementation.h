@@ -10,10 +10,13 @@ class EDITORFRAMEWORKINTERFACESSHARED_EXPORT IToolboxImplementation {
 public:
     IToolboxImplementation(){}
     virtual ~IToolboxImplementation(){}
-    virtual QToolBar *background() = 0;
-    virtual QToolBar *border() = 0;
+    virtual QString background() = 0;
+    virtual QString border() = 0;
 };
 
+Q_DECLARE_METATYPE(IToolboxImplementation *);
+
 Q_DECLARE_INTERFACE(IToolboxImplementation, "org.qt.EditorFrameworkInterfaces.IToolboxImplementation")
+
 
 #endif // ITOOLBOXIMPLEMENTATION_H

@@ -1,7 +1,6 @@
 #include "themeimplementation2.h"
 
-#include <QtWidgets/QStyle>
-#include <QtWidgets/QToolBar>
+#include <QString>
 
 ThemeImplementation2::ThemeImplementation2(QObject *parent) :
     IPlugin(parent)
@@ -13,19 +12,17 @@ bool ThemeImplementation2::initialize(ICore *core)
     return true;
 }
 
-QToolBar *ThemeImplementation2::background()
+QString ThemeImplementation2::background()
 {
-    QToolBar *newToolbar = new QToolBar;
-    newToolbar->setStyleSheet("background-color: yellow;"
-                              "border-style: outset;"
-                              "border-width: 1px;"
-                              "border-color: blue;");
-    return newToolbar;
+    QString style( "background-color: red;");
+    return style;
 }
 
-QToolBar *ThemeImplementation2::border()
+QString ThemeImplementation2::border()
 {
-    QToolBar *newToolbar = new QToolBar;
-    newToolbar->setStyleSheet("background-color: red;");
-    return newToolbar;
+    QString style( "border-style: outset;"
+                   "border-width: 2px;"
+                   "border-color: beige;"
+                 );
+    return style;
 }

@@ -9,11 +9,13 @@
 #include <EditorFrameworkInterfaces/idocumentcontroller.h>
 #include <EditorFrameworkInterfaces/idocument.h>
 #include <EditorFrameworkInterfaces/iserializer.h>
+#include <EditorFrameworkInterfaces/itoolboximplementation.h>
 
 #include "ui_mainwindow.h"
 
 #include <QDebug>
 #include <QString>
+#include <QVariant>
 #include <QFileDialog>
 #include <QWidget>
 
@@ -65,7 +67,9 @@ void UIController::setEditor(const Editor *editor)
 {
     qDebug()<<"Setting editor";
     QWidget *view = editor->view();
-    m_mainWindow->setCentralWidget(view);
+    view->setParent(m_mainWindow);
+    m_mainWindow->ui->tabWidget->addTab(view,"Tab");
+            //setCentralWidget(view);
 }
 
 void UIController::setToolbox(const Toolbox *toolbox)
@@ -79,6 +83,18 @@ void UIController::initialize()
     qDebug()<<"Init";
     addMenu(tr("&File"));
     addAction(tr("&File"), tr("&Open"), this, SLOT(actionOpen()),QKeySequence(Qt::CTRL + Qt::Key_O));
+
+
+    //TODO Move this piece of code to another method.
+    IPluginController *ipluginController = m_core->pluginController();
+
+    foreach (IPlugin *iplugin, *ipluginController->loadedPlugins())
+    {
+        IToolboxImplementation *implementation = dynamic_cast<IToolboxImplementation *>(iplugin);
+
+        if (implementation)
+            m_mainWindow->ui->cbbImplementation->addItem(iplugin->metaObject()->className(),QVariant::fromValue((IToolboxImplementation *)implementation));
+    }
 }
 
 QString *UIController::extensions(ICore *core) const{
@@ -149,12 +165,12 @@ void UIController::actionOpen()
 
 void UIController::actionSave()
 {
-
+    qDebug()<<"Saving...";
 }
 
 void UIController::actionClose()
 {
-
+    qDebug()<<"Closing...";
 }
 
 
