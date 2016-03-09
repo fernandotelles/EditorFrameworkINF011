@@ -26,15 +26,18 @@ public:
 private:
     void initialize();
     QString *extensions(ICore *core)const;
+    void initCbbImplementation();
 
 private Q_SLOTS:
     void actionOpen();
     void actionSave();
     void actionClose();
+    void on_cbbImplementation_currentIndexChanged(int index);
 
 private:
     MainWindow *m_mainWindow;
     ICore *m_core;
+    Toolbox *m_toolbox;
 };
 
 #endif // UICONTROLLER_H

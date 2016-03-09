@@ -24,6 +24,7 @@ PluginController::PluginController(ICore *core) :
         iplugin = dynamic_cast<IPlugin *>(loader.instance());
         if (iplugin)
         {
+            qDebug()<<"Plugin "<< iplugin->metaObject()->className()<<" Added";
             iplugin->initialize(core);
             m_plugins->append(iplugin);
         }

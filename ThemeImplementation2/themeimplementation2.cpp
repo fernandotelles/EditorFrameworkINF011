@@ -14,7 +14,7 @@ bool ThemeImplementation2::initialize(ICore *core)
 
 QString ThemeImplementation2::background()
 {
-    QString style( "background-color: red;");
+    QString style( "background-color: blue;");
     return style;
 }
 

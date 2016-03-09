@@ -1,23 +1,21 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2016-03-04T17:11:37
+# Project created by QtCreator 2016-03-08T22:32:39
 #
 #-------------------------------------------------
 
-QT       += widgets
-
 QT       -= gui
 
-TARGET = ThemeImplementation2
+TARGET = ThemeImplementation3
 TEMPLATE = lib
 CONFIG += plugin
 
-DEFINES += THEMEIMPLEMENTATION2_LIBRARY
+DEFINES += THEMEIMPLEMENTATION3_LIBRARY
 
-SOURCES += themeimplementation2.cpp
+SOURCES += themeimplementation3.cpp
 
-HEADERS += themeimplementation2.h\
-        themeimplementation2_global.h
+HEADERS += themeimplementation3.h\
+        themeimplementation3_global.h
 
 DESTDIR = ../EditorFramework/plugins
 
@@ -30,6 +28,7 @@ unix {
 }
 
 DISTFILES += \
-    themeimplementation2plugin.json
+    themeimplementationplugin.json \
+    themeimplementation3plugin.json
 
 unix|win32: LIBS += -lEditorFrameworkInterfaces

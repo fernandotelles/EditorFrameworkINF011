@@ -20,7 +20,9 @@ private:
     void initialize();
 
 private Q_SLOTS:
-    void contactClic();
+    void clic1();
+    void clic2();
+    void clic3();
 
 private:
     QList<QAction *> *m_toolButtonList;

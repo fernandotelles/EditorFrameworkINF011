@@ -22,7 +22,8 @@
 
 UIController::UIController(ICore *core) :
     m_mainWindow(new MainWindow),
-    m_core(core)
+    m_core(core),
+    m_toolbox(0)
 {
     m_mainWindow->show();
     initialize();
@@ -32,6 +33,8 @@ UIController::UIController(ICore *core) :
 UIController::~UIController()
 {
     delete m_mainWindow;
+    delete m_core;
+    delete m_toolbox;
 }
 
 QMenu *UIController::addMenu(const QString &title, const QString &parentMenuName, const QIcon &icon)
@@ -68,8 +71,10 @@ void UIController::setEditor(const Editor *editor)
     qDebug()<<"Setting editor";
     QWidget *view = editor->view();
     view->setParent(m_mainWindow);
-    m_mainWindow->ui->tabWidget->addTab(view,"Tab");
-            //setCentralWidget(view);
+    m_mainWindow->ui->tabWidget->addTab(view,"Tab 1");
+    m_mainWindow->ui->tab->deleteLater();
+    m_mainWindow->ui->tab_2->deleteLater();
+
 }
 
 void UIController::setToolbox(const Toolbox *toolbox)
@@ -83,18 +88,6 @@ void UIController::initialize()
     qDebug()<<"Init";
     addMenu(tr("&File"));
     addAction(tr("&File"), tr("&Open"), this, SLOT(actionOpen()),QKeySequence(Qt::CTRL + Qt::Key_O));
-
-
-    //TODO Move this piece of code to another method.
-    IPluginController *ipluginController = m_core->pluginController();
-
-    foreach (IPlugin *iplugin, *ipluginController->loadedPlugins())
-    {
-        IToolboxImplementation *implementation = dynamic_cast<IToolboxImplementation *>(iplugin);
-
-        if (implementation)
-            m_mainWindow->ui->cbbImplementation->addItem(iplugin->metaObject()->className(),QVariant::fromValue((IToolboxImplementation *)implementation));
-    }
 }
 
 QString *UIController::extensions(ICore *core) const{
@@ -112,6 +105,26 @@ QString *UIController::extensions(ICore *core) const{
     }
     extensions->append(")");
     return extensions;
+}
+
+void UIController::initCbbImplementation()
+{
+    qDebug()<<"initCbbImplementation";
+    IPluginController *ipluginController = m_core->pluginController();
+
+    foreach (IPlugin *iplugin, *ipluginController->loadedPlugins())
+    {
+        IToolboxImplementation *implementation = dynamic_cast<IToolboxImplementation *>(iplugin);
+
+        if (implementation)
+        {
+            qDebug()<<"Aqui";
+            m_mainWindow->ui->cbbImplementation->addItem(iplugin->metaObject()->className(),QVariant::fromValue((IToolboxImplementation *)implementation));
+            qDebug()<<"Aqui Tambem";
+        }
+    }
+    //m_mainWindow->ui->cbbImplementation->cu
+    connect(m_mainWindow->ui->cbbImplementation, SIGNAL(currentIndexChanged(int)), this, SLOT(on_cbbImplementation_currentIndexChanged(int)));
 }
 
 void UIController::actionOpen()
@@ -140,7 +153,7 @@ void UIController::actionOpen()
                 {
                     Editor *editor =  abstractFactory->createEditor();
                     ISerializer *serializer = abstractFactory->createSerializer();
-                    Toolbox *toolbox = abstractFactory->createToolbox();
+                    m_toolbox = abstractFactory->createToolbox();
                     qDebug()<<"Serializer: "<<serializer;
                     qDebug()<<"Extensão de Arquivo: "+ fileExtension +". Plugin: "+ iplugin->metaObject()->className()+"";
 
@@ -154,9 +167,9 @@ void UIController::actionOpen()
                     qDebug()<<"Document controller"<<editor;
                     setEditor(editor);
                     //toolbox->setImplementation(0);
-                    qDebug()<<"Toolbox "<<toolbox;
-
-                    setToolbox(toolbox);
+                    qDebug()<<"Toolbox "<<m_toolbox;
+                    setToolbox(m_toolbox);
+                    initCbbImplementation();
                 }
             }
         }
@@ -173,4 +186,8 @@ void UIController::actionClose()
     qDebug()<<"Closing...";
 }
 
-
+void UIController::on_cbbImplementation_currentIndexChanged(int index)
+{
+    m_toolbox->setImplementation(m_mainWindow->ui->cbbImplementation->itemData(index).value<IToolboxImplementation *>());
+    m_mainWindow->ui->mainToolBar->setStyleSheet(m_toolbox->toolBoxBackground());
+}
